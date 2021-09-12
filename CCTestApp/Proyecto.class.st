@@ -26,7 +26,8 @@ Class {
 	#name : #Proyecto,
 	#superclass : #Object,
 	#instVars : [
-		'nombre'
+		'nombre',
+		'puestos'
 	],
 	#category : #'CCTestApp-Proyectos'
 }
@@ -41,4 +42,16 @@ Proyecto >> nombre [
 Proyecto >> nombre: anObject [
 
 	nombre := anObject
+]
+
+{ #category : #accessing }
+Proyecto >> puestos [
+
+	^ puestos
+]
+
+{ #category : #accessing }
+Proyecto >> puestos: anObject [
+
+	puestos := anObject
 ]
