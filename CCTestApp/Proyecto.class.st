@@ -1,36 +1,33 @@
 "
-Soy un proyecto
-
-For the Class part:  State a one line summary. For example, ""I represent a paragraph of text"".
-
-For the Responsibility part: Three sentences about my main responsibilities - what I do, what I know.
-
-For the Collaborators Part: State my main collaborators and one line about how I interact with them.
-
-Public API and Key Messages
-•	message one
-•	message two
-•	(for bonus points) how to create instances.
-
-One simple example is simply gorgeous.
-
-Internal Representation and Key Implementation Points.
-
-Instance Variables
-nombre:  <Object>
-
-Implementation Points
-
+Soy un proyecto que contiene tareas a cumplir por personas con distintos roles
 "
 Class {
 	#name : #Proyecto,
 	#superclass : #Object,
 	#instVars : [
 		'nombre',
-		'puestos'
+		'puestos',
+		'porcentajeCompletado',
+		'tareas'
 	],
 	#category : #'CCTestApp-Proyectos'
 }
+
+{ #category : #initialization }
+Proyecto >> calcularPorcentajeCompletado [
+	| tareasCompletadas |
+	tareasCompletadas:= OrderedCollection new.
+	tareas do: [ :t | t completada ifTrue:[ tareasCompletadas add: t ]].
+	
+	 ^ (((tareasCompletadas size / tareas size) asFloat) * 100) round: 2
+]
+
+{ #category : #initialization }
+Proyecto >> initialize [
+	porcentajeCompletado:= 0.
+	puestos:= OrderedCollection new.
+	tareas:= OrderedCollection new.
+]
 
 { #category : #accessing }
 Proyecto >> nombre [
@@ -45,6 +42,18 @@ Proyecto >> nombre: anObject [
 ]
 
 { #category : #accessing }
+Proyecto >> porcentajeCompletado [
+
+	^ porcentajeCompletado
+]
+
+{ #category : #accessing }
+Proyecto >> porcentajeCompletado: anObject [
+
+	porcentajeCompletado := anObject
+]
+
+{ #category : #accessing }
 Proyecto >> puestos [
 
 	^ puestos
@@ -54,4 +63,16 @@ Proyecto >> puestos [
 Proyecto >> puestos: anObject [
 
 	puestos := anObject
+]
+
+{ #category : #accessing }
+Proyecto >> tareas [
+
+	^ tareas
+]
+
+{ #category : #accessing }
+Proyecto >> tareas: anObject [
+
+	tareas := anObject
 ]
