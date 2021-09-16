@@ -7,8 +7,8 @@ Class {
 	#instVars : [
 		'nombre',
 		'puestos',
-		'porcentajeCompletada',
-		'completada'
+		'completada',
+		'subtareas'
 	],
 	#category : #'CCTestApp-Proyectos'
 }
@@ -33,11 +33,19 @@ Tarea >> completada: anObject [
 	completada := anObject
 ]
 
+{ #category : #modifying }
+Tarea >> completarSubtarea: aString [
+	subtareas remove: aString ifAbsent: [ ^ false ].
+	subtareas isEmpty ifTrue: [ completada:= true ].
+	^ true.
+	
+]
+
 { #category : #initialization }
 Tarea >> initialize [
 	completada:= false.
 	puestos:= OrderedCollection new.
-	porcentajeCompletada:= 0.
+	subtareas:= OrderedCollection new.
 ]
 
 { #category : #accessing }
@@ -53,18 +61,6 @@ Tarea >> nombre: anObject [
 ]
 
 { #category : #accessing }
-Tarea >> porcentajeCompletada [
-
-	^ porcentajeCompletada
-]
-
-{ #category : #accessing }
-Tarea >> porcentajeCompletada: anObject [
-
-	porcentajeCompletada := anObject
-]
-
-{ #category : #accessing }
 Tarea >> puestos [
 
 	^ puestos
@@ -74,4 +70,16 @@ Tarea >> puestos [
 Tarea >> puestos: anObject [
 
 	puestos := anObject
+]
+
+{ #category : #accessing }
+Tarea >> subtareas [
+
+	^ subtareas
+]
+
+{ #category : #accessing }
+Tarea >> subtareas: anObject [
+
+	subtareas := anObject
 ]

@@ -13,7 +13,7 @@ Class {
 	#category : #'CCTestApp-Proyectos'
 }
 
-{ #category : #initialization }
+{ #category : #calculating }
 Proyecto >> calcularPorcentajeCompletado [
 	| tareasCompletadas |
 	tareasCompletadas:= OrderedCollection new.

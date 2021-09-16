@@ -27,6 +27,7 @@ ProyectosTest >> setUp [
 	t1 := Tarea newWithNombre: 'Conducir Proyecto'.
 	t1 puestos:
 		(OrderedCollection with: (Puesto newWithPersona: p1 rol: r1)).
+	t1 subtareas: (OrderedCollection with: 'Organizar roles y calendario' with: 'Realizar reviews semanales').
 
 	p2 := Persona new.
 	p2 nombre: 'Pepe'.
@@ -37,9 +38,11 @@ ProyectosTest >> setUp [
 	t2 puestos: (OrderedCollection
 			 with: (Puesto newWithPersona: p1 rol: r2)
 			 with: (Puesto newWithPersona: p2 rol: r2)).
+	t2 subtareas: (OrderedCollection with: 'Diseñar API' with: 'Desarrollar API' with: 'Armar tests').
 
 	t3:= Tarea newWithNombre: 'Desarrollo de front end'.
 	t3 puestos: (OrderedCollection with: (Puesto newWithPersona: p2 rol: r2)).
+	t3 subtareas: (OrderedCollection with: 'Instalar framework' with: 'Diseñar mockup').
 	
 	proyecto := Proyecto new.
 	proyecto nombre: 'Refactor backend'.
@@ -60,6 +63,10 @@ ProyectosTest >> testTareas [
 	
 	self assert: (proyecto tareas size) equals: 3.
 	self assert: (proyecto calcularPorcentajeCompletado) equals: 0.
-	(proyecto tareas at: 1) completada: true.
+	
+	self assert: ((proyecto tareas at: 1) subtareas size) equals: 2.
+	(proyecto tareas at: 1) completarSubtarea: 'Organizar roles y calendario'.
+	(proyecto tareas at: 1) completarSubtarea: 'Realizar reviews semanales'.
+	
 	self assert: (proyecto calcularPorcentajeCompletado) equals: 33.33.
 ]
