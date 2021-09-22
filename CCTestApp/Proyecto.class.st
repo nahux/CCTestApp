@@ -14,12 +14,12 @@ Class {
 }
 
 { #category : #calculating }
-Proyecto >> calcularPorcentajeCompletado [
+Proyecto >> calcularPorcentajeCompletadoDeTareasDelProyecto [
 	| tareasCompletadas |
 	tareasCompletadas:= OrderedCollection new.
 	tareas do: [ :t | t completada ifTrue:[ tareasCompletadas add: t ]].
 	
-	 ^ (((tareasCompletadas size / tareas size) asFloat) * 100) round: 2
+	 porcentajeCompletado:= (((tareasCompletadas size / tareas size) asFloat) * 100) round: 2
 ]
 
 { #category : #initialization }

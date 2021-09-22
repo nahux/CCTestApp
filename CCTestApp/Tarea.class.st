@@ -6,9 +6,8 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'nombre',
-		'puestos',
-		'completada',
-		'subtareas'
+		'empleados',
+		'completada'
 	],
 	#category : #'CCTestApp-Proyectos'
 }
@@ -33,19 +32,22 @@ Tarea >> completada: anObject [
 	completada := anObject
 ]
 
-{ #category : #modifying }
-Tarea >> completarSubtarea: aString [
-	subtareas remove: aString ifAbsent: [ ^ false ].
-	subtareas isEmpty ifTrue: [ completada:= true ].
-	^ true.
-	
+{ #category : #accessing }
+Tarea >> empleados [
+
+	^ empleados
+]
+
+{ #category : #accessing }
+Tarea >> empleados: anObject [
+
+	empleados := anObject
 ]
 
 { #category : #initialization }
 Tarea >> initialize [
 	completada:= false.
-	puestos:= OrderedCollection new.
-	subtareas:= OrderedCollection new.
+	empleados:= OrderedCollection new.
 ]
 
 { #category : #accessing }
@@ -58,28 +60,4 @@ Tarea >> nombre [
 Tarea >> nombre: anObject [
 
 	nombre := anObject
-]
-
-{ #category : #accessing }
-Tarea >> puestos [
-
-	^ puestos
-]
-
-{ #category : #accessing }
-Tarea >> puestos: anObject [
-
-	puestos := anObject
-]
-
-{ #category : #accessing }
-Tarea >> subtareas [
-
-	^ subtareas
-]
-
-{ #category : #accessing }
-Tarea >> subtareas: anObject [
-
-	subtareas := anObject
 ]

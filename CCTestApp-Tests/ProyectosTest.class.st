@@ -18,31 +18,25 @@ ProyectosTest >> setUp [
 	super setUp.
 	puestos := OrderedCollection new.
 
-	p1 := Persona new.
+	p1 := Lider new.
 	p1 nombre: 'Juan'.
 	r1 := Rol new.
 	r1 nombre: 'Lider'.
 	puestos add: (Puesto newWithPersona: p1 rol: r1).
 
 	t1 := Tarea newWithNombre: 'Conducir Proyecto'.
-	t1 puestos:
-		(OrderedCollection with: (Puesto newWithPersona: p1 rol: r1)).
-	t1 subtareas: (OrderedCollection with: 'Organizar roles y calendario' with: 'Realizar reviews semanales').
+	p1 asignarTarea: t1 aEmpleado: p1.
 
-	p2 := Persona new.
+	p2 := Empleado new.
 	p2 nombre: 'Pepe'.
 	r2 := Rol new.
 	r2 nombre: 'Desarrollador'.
 	puestos add: (Puesto newWithPersona: p2 rol: r2).
 	t2 := Tarea newWithNombre: 'Desarrollo de back end'.
-	t2 puestos: (OrderedCollection
-			 with: (Puesto newWithPersona: p1 rol: r2)
-			 with: (Puesto newWithPersona: p2 rol: r2)).
-	t2 subtareas: (OrderedCollection with: 'Diseñar API' with: 'Desarrollar API' with: 'Armar tests').
+	p1 asignarTarea: t2 aEmpleado: p2.
 
 	t3:= Tarea newWithNombre: 'Desarrollo de front end'.
-	t3 puestos: (OrderedCollection with: (Puesto newWithPersona: p2 rol: r2)).
-	t3 subtareas: (OrderedCollection with: 'Instalar framework' with: 'Diseñar mockup').
+	p1 asignarTarea: t3 aEmpleado: p2.
 	
 	proyecto := Proyecto new.
 	proyecto nombre: 'Refactor backend'.
@@ -62,11 +56,12 @@ ProyectosTest >> testTareas [
 	self assert: (proyecto nombre) equals: 'Refactor backend'.
 	
 	self assert: (proyecto tareas size) equals: 3.
-	self assert: (proyecto calcularPorcentajeCompletado) equals: 0.
+	proyecto calcularPorcentajeCompletadoDeTareasDelProyecto.
+	self assert: (proyecto porcentajeCompletado) equals: 0.
 	
-	self assert: ((proyecto tareas at: 1) subtareas size) equals: 2.
-	(proyecto tareas at: 1) completarSubtarea: 'Organizar roles y calendario'.
-	(proyecto tareas at: 1) completarSubtarea: 'Realizar reviews semanales'.
+	self assert: (((puestos at: 1) persona) tarea: (proyecto tareas at: 1) tieneAEmpleado: ((puestos at: 1) persona)) not.
 	
-	self assert: (proyecto calcularPorcentajeCompletado) equals: 33.33.
+	((proyecto tareas at: 2) empleados at: 1) realizarTarea: (proyecto tareas at: 2).
+	proyecto calcularPorcentajeCompletadoDeTareasDelProyecto.
+	self assert: (proyecto porcentajeCompletado) equals: 33.33.
 ]
