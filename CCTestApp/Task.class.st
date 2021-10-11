@@ -9,7 +9,7 @@ Class {
 		'employees',
 		'name'
 	],
-	#category : #'CCTestApp-Proyectos'
+	#category : #'CCTestApp-Project'
 }
 
 { #category : #'instance creation' }

@@ -7,7 +7,7 @@ Class {
 	#instVars : [
 		'employees'
 	],
-	#category : #'CCTestApp-Proyectos'
+	#category : #'CCTestApp-Project'
 }
 
 { #category : #doing }

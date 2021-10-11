@@ -7,7 +7,7 @@ Class {
 	#instVars : [
 		'name'
 	],
-	#category : #'CCTestApp-Proyectos'
+	#category : #'CCTestApp-Project'
 }
 
 { #category : #accessing }

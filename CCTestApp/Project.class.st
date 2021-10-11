@@ -10,7 +10,7 @@ Class {
 		'completionPercentage',
 		'tasks'
 	],
-	#category : #'CCTestApp-Proyectos'
+	#category : #'CCTestApp-Project'
 }
 
 { #category : #accessing }

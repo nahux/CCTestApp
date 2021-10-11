@@ -8,7 +8,7 @@ Class {
 		'person',
 		'role'
 	],
-	#category : #'CCTestApp-Proyectos'
+	#category : #'CCTestApp-Project'
 }
 
 { #category : #'instance creation' }
