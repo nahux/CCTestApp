@@ -26,7 +26,7 @@ Project >> completionPercentage: aNumber [
 ]
 
 { #category : #calculating }
-Project >> computeCompletionPercentageOfProjectsTasks [
+Project >> computeTheTotalCompletionPercentageOfTheProjectTasks [
 	| completedTasks |
 	completedTasks:= OrderedCollection new.
 	tasks do: [ :t | t completed ifTrue:[ completedTasks add: t ]].

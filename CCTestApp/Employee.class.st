@@ -22,3 +22,20 @@ Employee >> doTask: aTask [
 			^ true ]
 		ifFalse: [ ^ false ]
 ]
+
+{ #category : #initialization }
+Employee >> initialize [
+	leader:= OrderedCollection new.
+]
+
+{ #category : #accessing }
+Employee >> leader [
+
+	^ leader
+]
+
+{ #category : #accessing }
+Employee >> leader: anObject [
+
+	leader := anObject
+]

@@ -10,11 +10,33 @@ Class {
 	#category : #'CCTestApp-Project'
 }
 
+{ #category : #initialization }
+Leader >> addEmployee: anEmployee [
+	employees add: anEmployee.
+]
+
 { #category : #doing }
 Leader >> assignTask: aTask toEmployee: anEmployee [
 
 	anEmployee class name = 'Leader' ifTrue: [ ^ false ].
 	aTask employees add: anEmployee
+]
+
+{ #category : #accessing }
+Leader >> employees [
+
+	^ employees
+]
+
+{ #category : #accessing }
+Leader >> employees: anObject [
+
+	employees := anObject
+]
+
+{ #category : #initialization }
+Leader >> initialize [
+	employees:= OrderedCollection new.
 ]
 
 { #category : #doing }

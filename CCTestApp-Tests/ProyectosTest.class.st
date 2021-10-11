@@ -57,7 +57,7 @@ ProyectosTest >> testTareas [
 	self assert: project name equals: 'Refactor backend'.
 
 	self assert: project tasks size equals: 3.
-	project computeCompletionPercentageOfProjectsTasks.
+	project computeTheTotalCompletionPercentageOfTheProjectTasks.
 	self assert: project completionPercentage equals: 0.
 
 	self assert: (((positions at: 1) person
@@ -65,6 +65,6 @@ ProyectosTest >> testTareas [
 			 hasEmployee: (positions at: 1) person)) not.
 
 	((project tasks at: 2) employees at: 1) doTask: (project tasks at: 2).
-	project computeCompletionPercentageOfProjectsTasks.
+	project computeTheTotalCompletionPercentageOfTheProjectTasks.
 	self assert: project completionPercentage equals: 33.33
 ]
