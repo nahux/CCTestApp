@@ -2,44 +2,44 @@
 Represento una persona con un rol dentro de un proyecto
 "
 Class {
-	#name : #Puesto,
+	#name : #Position,
 	#superclass : #Object,
 	#instVars : [
-		'persona',
-		'rol'
+		'person',
+		'role'
 	],
 	#category : #'CCTestApp-Proyectos'
 }
 
 { #category : #'instance creation' }
-Puesto class >> newWithPersona: aPersona rol: aRol [
+Position class >> newWithPerson: aPerson role: aRole [
 
 	^ self new
-		  persona: aPersona;
-		  rol: aRol;
+		  person: aPerson;
+		  role: aRole;
 		  yourself
 ]
 
 { #category : #accessing }
-Puesto >> persona [
+Position >> person [
 
-	^ persona
+	^ person
 ]
 
 { #category : #accessing }
-Puesto >> persona: aPerson [
+Position >> person: aPerson [
 
-	persona := aPerson
+	person := aPerson
 ]
 
 { #category : #accessing }
-Puesto >> rol [
+Position >> role [
 
-	^ rol
+	^ role
 ]
 
 { #category : #accessing }
-Puesto >> rol: aRol [
+Position >> role: aRole [
 
-	rol := aRol
+	role := aRole
 ]

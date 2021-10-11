@@ -2,22 +2,22 @@
 Represento un Rol a cumplir dentro de un proyecto.
 "
 Class {
-	#name : #Rol,
+	#name : #Role,
 	#superclass : #Object,
 	#instVars : [
-		'nombre'
+		'name'
 	],
 	#category : #'CCTestApp-Proyectos'
 }
 
 { #category : #accessing }
-Rol >> nombre [
+Role >> name [
 
-	^ nombre
+	^ name
 ]
 
 { #category : #accessing }
-Rol >> nombre: anObject [
+Role >> name: anObject [
 
-	nombre := anObject
+	name := anObject
 ]

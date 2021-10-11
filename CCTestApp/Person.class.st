@@ -2,22 +2,20 @@
 Soy una persona participante en un proyecto
 "
 Class {
-	#name : #Persona,
+	#name : #Person,
 	#superclass : #Object,
 	#instVars : [
-		'nombre'
+		'name'
 	],
 	#category : #'CCTestApp-Proyectos'
 }
 
 { #category : #accessing }
-Persona >> nombre [
-
-	^ nombre
+Person >> name [
+	^ name
 ]
 
 { #category : #accessing }
-Persona >> nombre: anObject [
-
-	nombre := anObject
+Person >> name: aName [
+	name := aName
 ]

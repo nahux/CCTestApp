@@ -5,8 +5,8 @@ Class {
 	#name : #ProyectosTest,
 	#superclass : #TestCase,
 	#instVars : [
-		'proyecto',
-		'puestos'
+		'project',
+		'positions'
 	],
 	#category : #'CCTestApp-Tests-Tests'
 }
@@ -16,52 +16,55 @@ ProyectosTest >> setUp [
 
 	| p1 p2 r1 r2 t1 t2 t3 |
 	super setUp.
-	puestos := OrderedCollection new.
+	positions := OrderedCollection new.
 
-	p1 := Lider new.
-	p1 nombre: 'Juan'.
-	r1 := Rol new.
-	r1 nombre: 'Lider'.
-	puestos add: (Puesto newWithPersona: p1 rol: r1).
+	p1 := Leader new.
+	p1 name: 'Juan'.
+	r1 := Role new.
+	r1 name: 'Lider'.
+	positions add: (Position newWithPerson: p1 role: r1).
 
-	t1 := Tarea newWithNombre: 'Conducir Proyecto'.
-	p1 asignarTarea: t1 aEmpleado: p1.
+	t1 := Task newWithName: 'Conducir Proyecto'.
+	p1 assignTask: t1 toEmployee: p1.
 
-	p2 := Empleado new.
-	p2 nombre: 'Pepe'.
-	r2 := Rol new.
-	r2 nombre: 'Desarrollador'.
-	puestos add: (Puesto newWithPersona: p2 rol: r2).
-	t2 := Tarea newWithNombre: 'Desarrollo de back end'.
-	p1 asignarTarea: t2 aEmpleado: p2.
+	p2 := Employee new.
+	p2 name: 'Pepe'.
+	r2 := Role new.
+	r2 name: 'Desarrollador'.
+	positions add: (Position newWithPerson: p2 role: r2).
+	t2 := Task newWithName: 'Desarrollo de back end'.
+	p1 assignTask: t2 toEmployee: p2.
 
-	t3:= Tarea newWithNombre: 'Desarrollo de front end'.
-	p1 asignarTarea: t3 aEmpleado: p2.
+	t3:= Task newWithName: 'Desarrollo de front end'.
+	p1 assignTask: t3 toEmployee: p2.
 	
-	proyecto := Proyecto new.
-	proyecto nombre: 'Refactor backend'.
-	proyecto puestos: puestos.
-	proyecto tareas: (OrderedCollection with: t1 with: t2 with: t3).
+	project := Project new.
+	project name: 'Refactor backend'.
+	project positions: positions.
+	project tasks: (OrderedCollection with: t1 with: t2 with: t3).
 ]
 
 { #category : #tests }
-ProyectosTest >> testPersonas [
-	self assert: ((proyecto puestos at: 1) persona) nombre equals: 'Juan'.
-	self assert: ((proyecto puestos at: 2) persona) nombre equals: 'Pepe'.
+ProyectosTest >> testPersons [
+	self assert: ((project positions at: 1) person) name equals: 'Juan'.
+	self assert: ((project positions at: 2) person) name equals: 'Pepe'.
 ]
 
 { #category : #tests }
 ProyectosTest >> testTareas [
-	self assert: (proyecto tareas size) equals: 3.
-	self assert: (proyecto nombre) equals: 'Refactor backend'.
-	
-	self assert: (proyecto tareas size) equals: 3.
-	proyecto calcularPorcentajeCompletadoDeTareasDelProyecto.
-	self assert: (proyecto porcentajeCompletado) equals: 0.
-	
-	self assert: (((puestos at: 1) persona) tarea: (proyecto tareas at: 1) tieneAEmpleado: ((puestos at: 1) persona)) not.
-	
-	((proyecto tareas at: 2) empleados at: 1) realizarTarea: (proyecto tareas at: 2).
-	proyecto calcularPorcentajeCompletadoDeTareasDelProyecto.
-	self assert: (proyecto porcentajeCompletado) equals: 33.33.
+
+	self assert: project tasks size equals: 3.
+	self assert: project name equals: 'Refactor backend'.
+
+	self assert: project tasks size equals: 3.
+	project computeCompletionPercentageOfProjectsTasks.
+	self assert: project completionPercentage equals: 0.
+
+	self assert: (((positions at: 1) person
+			 task: (project tasks at: 1)
+			 hasEmployee: (positions at: 1) person)) not.
+
+	((project tasks at: 2) employees at: 1) doTask: (project tasks at: 2).
+	project computeCompletionPercentageOfProjectsTasks.
+	self assert: project completionPercentage equals: 33.33
 ]
